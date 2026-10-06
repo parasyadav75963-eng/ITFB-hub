@@ -70,7 +70,7 @@ dependencies {
     // Stable PDFBox for Android
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
-    // Switch to ffmpeg-kit-min for 100% Guaranteed Resolution
+    // FFmpeg Kit Min with Full Bintray Support
     implementation 'com.arthenica:ffmpeg-kit-min:6.0-2.LTS'
 
     testImplementation 'junit:junit:4.13.2'
