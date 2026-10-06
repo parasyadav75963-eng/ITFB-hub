@@ -67,8 +67,11 @@ dependencies {
     // Google Generative AI SDK
     implementation 'com.google.ai.client.generativeai:generativeai:0.4.0'
 
-    // Stable PDFBox for Android (Hosted on JitPack - Fully Supported)
+    // Stable PDFBox for Android
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
+
+    // Correct Code-Matching FFmpeg Kit Android Dependency
+    implementation 'com.arthenica:ffmpeg-kit-android:6.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
