@@ -61,8 +61,8 @@ dependencies {
     // PDFBox for Android
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
-    // FFmpeg Kit for Android (Audio Magic)
-    implementation 'com.arthenica:ffmpeg-kit-android:4.5.1'
+    // FFmpeg Kit for Android (Stable LTS Version 6.0.0)
+    implementation 'com.arthenica:ffmpeg-kit-android:6.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
