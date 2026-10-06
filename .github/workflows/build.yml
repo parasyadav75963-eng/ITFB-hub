@@ -28,10 +28,10 @@ jobs:
         echo "24333f8a43b68162cef82be491525f412f4c71d6" > /usr/local/lib/android/sdk/licenses/android-sdk-license
         echo "d56f5187479451eabf01fb78af6dfcb131a6488e" >> /usr/local/lib/android/sdk/licenses/android-sdk-license
 
-    - name: Generate Wrapper & Build APK
+    - name: Build APK with Gradle
       run: |
         sudo apt-get update && sudo apt-get install -y gradle
-        gradle wrapper --gradle-version 8.0
+        gradle wrapper --gradle-version 7.6
         chmod +x gradlew
         ./gradlew assembleDebug --no-daemon
 
