@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "630021231351",
+    "project_id": "itfb-hub",
+    "storage_bucket": "itfb-hub.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630021231351:android:c1cc73acad2321d4f379f2",
+        "android_client_info": {
+          "package_name": "com.itfb.hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAOo_pdYG9Xjc2OE2OQyIIglsULVRNcBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
