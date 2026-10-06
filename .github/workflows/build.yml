@@ -20,7 +20,7 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Configure Native Android SDK & Environment
+    - name: Configure Android SDK Environment
       run: |
         echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> $GITHUB_ENV
         echo "sdk.dir=/usr/local/lib/android/sdk" > local.properties
