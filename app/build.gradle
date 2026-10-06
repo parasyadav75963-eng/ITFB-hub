@@ -70,8 +70,8 @@ dependencies {
     // Stable PDFBox for Android
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
-    // Correct Exact Version of FFmpeg Kit Android
-    implementation 'com.arthenica:ffmpeg-kit-android:6.0.0'
+    // The Exact Verified Maven Central FFmpeg Artifact
+    implementation 'com.arthenica:ffmpeg-kit-android-full:6.0-1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
