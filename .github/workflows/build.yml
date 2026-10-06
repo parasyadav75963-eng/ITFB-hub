@@ -41,7 +41,7 @@ jobs:
         gradle --version
 
     - name: Build APK with System Gradle
-      run: gradle assembleDebug --no-daemon
+      run: gradle assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
