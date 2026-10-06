@@ -28,12 +28,12 @@ jobs:
         echo "24333f8a43b68162cef82be491525f412f4c71d6" > /usr/local/lib/android/sdk/licenses/android-sdk-license
         echo "d56f5187479451eabf01fb78af6dfcb131a6488e" >> /usr/local/lib/android/sdk/licenses/android-sdk-license
 
-    - name: Download & Install Modern Gradle 8.4
+    - name: Download & Setup Modern Gradle 8.4
       run: |
         wget -q https://services.gradle.org/distributions/gradle-8.4-bin.zip
         unzip -q gradle-8.4-bin.zip
         sudo mv gradle-8.4 /opt/gradle
-        sudo ln -s /opt/gradle/bin/gradle /usr/bin/gradle
+        echo "/opt/gradle/bin" >> $GITHUB_PATH
         gradle --version
 
     - name: Build APK with System Gradle
