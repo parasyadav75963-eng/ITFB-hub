@@ -20,14 +20,12 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Install Gradle & Generate Wrapper
+    - name: Generate Wrapper and Build APK
       run: |
         sudo apt-get update && sudo apt-get install -y gradle
-        gradle wrapper --gradle-version 8.0
+        gradle wrapper --gradle-version 8.7
         chmod +x gradlew
-
-    - name: Build APK with Gradle
-      run: ./gradlew assembleDebug
+        ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
