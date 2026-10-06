@@ -20,17 +20,20 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
+    - name: Configure Inbuilt Android SDK & Licenses
+      run: |
+        echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> $GITHUB_ENV
+        echo "sdk.dir=/usr/local/lib/android/sdk" > local.properties
+        mkdir -p /usr/local/lib/android/sdk/licenses
+        echo "24333f8a43b68162cef82be491525f412f4c71d6" > /usr/local/lib/android/sdk/licenses/android-sdk-license
+        echo "d56f5187479451eabf01fb78af6dfcb131a6488e" >> /usr/local/lib/android/sdk/licenses/android-sdk-license
 
-    - name: Install Gradle & Generate Wrapper
+    - name: Generate Wrapper & Build APK
       run: |
         sudo apt-get update && sudo apt-get install -y gradle
         gradle wrapper --gradle-version 8.7
         chmod +x gradlew
-
-    - name: Build APK with Gradle
-      run: ./gradlew assembleDebug --stacktrace
+        ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
