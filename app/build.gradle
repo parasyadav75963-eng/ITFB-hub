@@ -55,8 +55,8 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.8.2'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
 
-    // Generative AI (Gemini)
-    implementation 'com.google.ai.client.generativeai:google-generative-ai-kotlin:0.1.2'
+    // Generative AI (Gemini) - Updated to stable version 0.3.0
+    implementation 'com.google.ai.client.generativeai:google-generative-ai-kotlin:0.3.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
