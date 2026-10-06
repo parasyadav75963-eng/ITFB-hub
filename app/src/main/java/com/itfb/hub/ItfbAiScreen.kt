@@ -241,7 +241,7 @@ fun MessageBubble(message: ChatMessage, context: Context) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
-        horizontalAlignment = alignment
+        horizontalAlignment = alignment as Alignment.Horizontal
     ) {
         Box(
             modifier = Modifier
