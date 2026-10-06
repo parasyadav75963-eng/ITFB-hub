@@ -61,8 +61,8 @@ dependencies {
     // PDFBox for Android
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
-    // FFmpeg Kit for Android (Stable LTS Version 6.0.0)
-    implementation 'com.arthenica:ffmpeg-kit-android:6.0.0'
+    // Correct Official FFmpeg Kit Artifact on Maven Central
+    implementation 'com.arthenica:ffmpeg-kit-full:6.0-2.LTS'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
