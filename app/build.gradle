@@ -74,8 +74,8 @@ dependencies {
     // ML Kit Text Recognition
     implementation 'com.google.mlkit:text-recognition:16.0.0'
 
-    // बोट के सुझाव के अनुसार सही FFmpeg वर्ज़न
-    implementation 'com.arthenica:ffmpeg-kit-android:6.0-gpl'
+    // बोट के सुझाव के अनुसार 6.0 वर्ज़न और रिपॉजिटरी फिक्स
+    implementation 'com.arthenica:ffmpeg-kit-android:6.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
