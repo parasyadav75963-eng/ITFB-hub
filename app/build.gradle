@@ -65,8 +65,17 @@ dependencies {
     // PDFBox
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
-    // Firebase (नोटिफिकेशन के लिए असली डिपेंडेंसी)
+    // Firebase (नोटिफिकेशन के लिए)
     implementation 'com.google.firebase:firebase-messaging:23.4.1'
+
+    // NEW: Google Sign-In (लॉगिन फीचर के लिए)
+    implementation 'com.google.android.gms:play-services-auth:21.0.0'
+
+    // NEW: ML Kit Text Recognition (टेक्स्ट स्कैनर के लिए)
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+
+    // NEW: असली FFmpeg (गिटहब के सुझाव के अनुसार 6.0 वर्ज़न)
+    implementation 'com.arthenica:ffmpeg-kit-android:6.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
