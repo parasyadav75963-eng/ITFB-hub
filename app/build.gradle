@@ -65,8 +65,8 @@ dependencies {
     // PDFBox
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
-    // THE 100% CORRECT EXACT STRING (इस बार मैंने कोई गलती नहीं की है)
-    implementation 'com.arthenica:ffmpeg-kit-full:5.1'
+    // ब्रह्मास्त्र: 100% Local File Dependency (No internet needed for build)
+    implementation files('libs/ffmpeg-kit.aar')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
