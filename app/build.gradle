@@ -65,8 +65,8 @@ dependencies {
     // PDFBox
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
-    // 100% Genuine and Stable FFmpeg Version (No more ghost versions)
-    implementation 'com.arthenica:ffmpeg-kit-full:5.1'
+    // Correctly Spelled Dependency (Added missing '-android-' keyword)
+    implementation 'com.arthenica:ffmpeg-kit-android-full:5.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
