@@ -65,6 +65,12 @@ dependencies {
     // PDFBox
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
+    // 1. Firebase Fix (नोटिफिकेशन फीचर के लिए)
+    implementation 'com.google.firebase:firebase-messaging:23.4.1'
+
+    // 2. FFmpeg Fix (ऑडियो/वीडियो फीचर के लिए)
+    implementation 'com.arthenica:ffmpeg-kit-full:5.1'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
