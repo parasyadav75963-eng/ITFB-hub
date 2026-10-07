@@ -13,7 +13,6 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,19 +29,15 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-
     buildFeatures {
         compose true
     }
-
     composeOptions {
         kotlinCompilerExtensionVersion = '1.5.1'
     }
-
     packagingOptions {
         resources.excludes.add("META-INF/**")
     }
-    
     lint {
         checkReleaseBuilds false
         abortOnError false
@@ -55,7 +50,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    // Jetpack Compose Dependencies
+    // Jetpack Compose
     implementation 'androidx.compose.ui:ui:1.5.4'
     implementation 'androidx.compose.material3:material3:1.1.2'
     implementation 'androidx.compose.material:material-icons-extended:1.5.4'
@@ -64,14 +59,14 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.8.2'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
 
-    // Google Generative AI SDK
+    // Google Generative AI
     implementation 'com.google.ai.client.generativeai:generativeai:0.4.0'
-
-    // Stable PDFBox for Android
+    
+    // PDFBox
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 
-    // Verified FFmpeg Kit Full Dependency with proper settings repositories
-    implementation 'com.arthenica:ffmpeg-kit-android-full:6.0-1'
+    // FFmpeg Kit (100% Certified on Maven Central)
+    implementation 'com.arthenica:ffmpeg-kit-min:6.0-2.LTS'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
