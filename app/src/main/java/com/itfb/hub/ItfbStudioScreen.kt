@@ -121,7 +121,7 @@ fun ItfbStudioScreen(onBack: () -> Unit) {
                 }
 
 //                val session = FFmpegKit.execute(command)
-                if (session.returnCode.isValueSuccess) {
+                if (false) {
                     withContext(Dispatchers.Main) {
                         generatedFile = outFile
                         statusText = "Processing Completed Successfully!"
