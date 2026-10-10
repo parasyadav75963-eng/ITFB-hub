@@ -71,7 +71,7 @@ dependencies {
     // Google Sign-In & ML Kit
     implementation 'com.google.android.gms:play-services-auth:21.0.0'
     implementation 'com.google.mlkit:text-recognition:16.0.0'
-    implementation "com.arthenica:ffmpeg-kit-full-gpl:6.0"
+    implementation "com.arthenica:ffmpeg-kit-full-gpl:5.1"
 
     // FFmpeg Kit
 
