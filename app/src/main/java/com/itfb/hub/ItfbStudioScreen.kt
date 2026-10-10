@@ -87,38 +87,38 @@ fun ItfbStudioScreen(onBack: () -> Unit) {
                 val outputPath = outFile.absolutePath
 
                 var command = ""
-                // -crf 28 File size को छोटा रखने के लिए है (Quality बरकरार रखते हुए)
-                val compressionArgs = "-vcodec libx264 -crf 28 -preset ultrafast"
-
-                when (selectedAction) {
-                    "Cut Video" -> {
-                        command = "-ss $startTime -i \"$inputPath\" -to $endTime -c copy \"$outputPath\""
-                    }
-                    "Mute Video" -> {
-                        command = "-i \"$inputPath\" -an -vcodec copy \"$outputPath\""
-                    }
-                    "Extract Audio" -> {
-                        command = "-i \"$inputPath\" -vn -acodec libmp3lame -q:a 2 \"$outputPath\""
-                    }
-                    "Remove Noise (Clean Voice)" -> {
-                        command = "-i \"$inputPath\" -af \"afftdn\" $compressionArgs \"$outputPath\""
-                    }
-                    "Add BGM / Sound Effect" -> {
-                        if (selectedAudioUri == null) {
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(context, "Please select BGM Audio first!", Toast.LENGTH_SHORT).show()
-                                isLoading = false
-                            }
-                            return@launch
-                        }
-                        // BGM Mixing with Fade in/out & Volume control
-                    }
-                }
-
-//                val session = FFmpegKit.execute(command)
-                if (false) {
-                    withContext(Dispatchers.Main) {
-                        generatedFile = outFile
+//                // -crf 28 File size को छोटा रखने के लिए है (Quality बरकरार रखते हुए)
+//                val compressionArgs = "-vcodec libx264 -crf 28 -preset ultrafast"
+//
+//                when (selectedAction) {
+//                    "Cut Video" -> {
+//                        command = "-ss $startTime -i \"$inputPath\" -to $endTime -c copy \"$outputPath\""
+//                    }
+//                    "Mute Video" -> {
+//                        command = "-i \"$inputPath\" -an -vcodec copy \"$outputPath\""
+//                    }
+//                    "Extract Audio" -> {
+//                        command = "-i \"$inputPath\" -vn -acodec libmp3lame -q:a 2 \"$outputPath\""
+//                    }
+//                    "Remove Noise (Clean Voice)" -> {
+//                        command = "-i \"$inputPath\" -af \"afftdn\" $compressionArgs \"$outputPath\""
+//                    }
+//                    "Add BGM / Sound Effect" -> {
+//                        if (selectedAudioUri == null) {
+//                            withContext(Dispatchers.Main) {
+//                                Toast.makeText(context, "Please select BGM Audio first!", Toast.LENGTH_SHORT).show()
+//                                isLoading = false
+//                            }
+//                            return@launch
+//                        }
+//                        // BGM Mixing with Fade in/out & Volume control
+//                    }
+//                }
+//
+////                val session = FFmpegKit.execute(command)
+//                if (false) {
+//                    withContext(Dispatchers.Main) {
+//                        generatedFile = outFile
                         statusText = "Processing Completed Successfully!"
                         Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
                     }
