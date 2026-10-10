@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
-import com.arthenica.ffmpegkit.FFmpegKit
-import com.arthenica.ffmpegkit.FFmpegKitConfig
+//import com.arthenica.ffmpegkit.FFmpegKit
+//import com.arthenica.ffmpegkit.FFmpegKitConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -80,7 +80,7 @@ fun ItfbStudioScreen(onBack: () -> Unit) {
         
         coroutineScope.launch(Dispatchers.IO) {
             try {
-                val inputPath = FFmpegKitConfig.getSafParameterForRead(context, selectedVideoUri)
+//                val inputPath = FFmpegKitConfig.getSafParameterForRead(context, selectedVideoUri)
                 val isAudioExtract = selectedAction == "Extract Audio"
                 val ext = if (isAudioExtract) "mp3" else "mp4"
                 
@@ -114,13 +114,13 @@ fun ItfbStudioScreen(onBack: () -> Unit) {
                             }
                             return@launch
                         }
-                        val audioPath = FFmpegKitConfig.getSafParameterForRead(context, selectedAudioUri)
+//                        val audioPath = FFmpegKitConfig.getSafParameterForRead(context, selectedAudioUri)
                         // BGM Mixing with Fade in/out & Volume control
                         command = "-i \"$inputPath\" -i \"$audioPath\" -filter_complex \"[0:a]volume=${videoVolume}[a1];[1:a]volume=${audioVolume},afade=t=in:st=0:d=2,afade=t=out:st=10:d=2[a2];[a1][a2]amix=inputs=2:duration=first:dropout_transition=2\" $compressionArgs \"$outputPath\""
                     }
                 }
 
-                val session = FFmpegKit.execute(command)
+//                val session = FFmpegKit.execute(command)
                 if (session.returnCode.isValueSuccess) {
                     withContext(Dispatchers.Main) {
                         generatedFile = outFile
