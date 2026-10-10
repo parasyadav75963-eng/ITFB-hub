@@ -73,7 +73,7 @@ dependencies {
     implementation 'com.google.mlkit:text-recognition:16.0.0'
 
     // FFmpeg Kit
-    implementation 'com.arthenica:ffmpeg-kit-android:6.0-gpl'
+    implementation 'com.arthenica:ffmpeg-kit-full-gpl:6.0-2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
