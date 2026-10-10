@@ -114,9 +114,9 @@ fun ItfbStudioScreen(onBack: () -> Unit) {
                             }
                             return@launch
                         }
-//                        val audioPath = FFmpegKitConfig.getSafParameterForRead(context, selectedAudioUri)
+//                        val inputPath = FFmpegKitConfig.getSafParameterForRead(context, selectedAudioUri)
                         // BGM Mixing with Fade in/out & Volume control
-                        command = "-i \"$inputPath\" -i \"$audioPath\" -filter_complex \"[0:a]volume=${videoVolume}[a1];[1:a]volume=${audioVolume},afade=t=in:st=0:d=2,afade=t=out:st=10:d=2[a2];[a1][a2]amix=inputs=2:duration=first:dropout_transition=2\" $compressionArgs \"$outputPath\""
+                        command = "-i \"$inputPath\" -i \"$inputPath\" -filter_complex \"[0:a]volume=${videoVolume}[a1];[1:a]volume=${audioVolume},afade=t=in:st=0:d=2,afade=t=out:st=10:d=2[a2];[a1][a2]amix=inputs=2:duration=first:dropout_transition=2\" $compressionArgs \"$outputPath\""
                     }
                 }
 
