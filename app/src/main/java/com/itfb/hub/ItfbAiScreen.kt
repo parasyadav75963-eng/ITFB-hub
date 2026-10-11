@@ -40,7 +40,7 @@ fun ItfbAiScreen(onBack: () -> Unit) {
     var prompt by remember { mutableStateOf("") }
     var chatHistory by remember { mutableStateOf(listOf<ChatMessage>()) }
     var isLoading by remember { mutableStateOf(false) }
-    var selectedModel by remember { mutableStateOf("gemini-1.5-flash") }
+    var selectedModel by remember { mutableStateOf("gemini-pro") }
     var showMenu by remember { mutableStateOf(false) }
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -79,9 +79,9 @@ fun ItfbAiScreen(onBack: () -> Unit) {
                         onDismissRequest = { showMenu = false }
                     ) {
                         DropdownMenuItem(
-                            text = { Text(if (selectedModel == "gemini-1.5-flash") "Switch to Smart (Pro)" else "Switch to Fast (Flash)") },
+                            text = { Text(if (selectedModel == "gemini-pro") "Switch to Smart (Pro)" else "Switch to Fast (Flash)") },
                             onClick = {
-                                selectedModel = if (selectedModel == "gemini-1.5-flash") "gemini-1.5-pro" else "gemini-1.5-flash"
+                                selectedModel = if (selectedModel == "gemini-pro") "gemini-pro" else "gemini-pro"
                                 showMenu = false
                                 Toast.makeText(context, "Model changed to $selectedModel", Toast.LENGTH_SHORT).show()
                             }
