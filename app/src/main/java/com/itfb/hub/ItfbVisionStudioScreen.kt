@@ -139,7 +139,7 @@ fun ItfbVisionStudioScreen(onBack: () -> Unit) {
         
         coroutineScope.launch {
             try {
-                val model = GenerativeModel("gemini-pro-vision", Secrets.GEMINI_API_KEY)
+                val model = GenerativeModel("gemini-3.8-flash", Secrets.GEMINI_API_KEY)
                 val response = model.generateContent(content {
                     image(selectedBitmap!!)
                     text("Describe this image in detail. Tell me what objects are visible, what the background is like, and read any text if present. Make the description very helpful and accessible for a visually impaired user.")

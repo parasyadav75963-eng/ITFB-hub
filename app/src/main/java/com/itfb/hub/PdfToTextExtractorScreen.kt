@@ -101,7 +101,7 @@ fun PdfToTextExtractorScreen(onBack: () -> Unit) {
                 }
                 
                 val model = GenerativeModel(
-                    modelName = "gemini-pro",
+                    modelName = "gemini-3.8-flash",
                     apiKey = Secrets.GEMINI_API_KEY,
                     systemInstruction = content { text(instruction) }
                 )
