@@ -1,5 +1,7 @@
 package com.itfb.hub
 
+import androidx.activity.compose.BackHandler
+
 import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
@@ -44,6 +46,10 @@ fun AppNavigation() {
     var currentScreen by remember { mutableStateOf("home") }
     var userName by remember { mutableStateOf<String?>(null) }
     var userEmail by remember { mutableStateOf<String?>(null) }
+
+    BackHandler(enabled = currentScreen != "home") {
+        currentScreen = "home"
+    }
 
     when (currentScreen) {
         "home" -> ItfbHubApp(
