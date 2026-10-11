@@ -78,6 +78,7 @@ fun ItfbStudioScreen(onBack: () -> Unit) {
         
         coroutineScope.launch(Dispatchers.IO) {
             try {
+                val inputPath = FFmpegKitConfig.getSafParameterForRead(context, selectedVideoUri)
                 val isAudioExtract = selectedAction == "Extract Audio"
                 val ext = if (isAudioExtract) "mp3" else "mp4"
                 
@@ -87,38 +88,40 @@ fun ItfbStudioScreen(onBack: () -> Unit) {
                 val outputPath = outFile.absolutePath
 
                 var command = ""
-//                // -crf 28 File size को छोटा रखने के लिए है (Quality बरकरार रखते हुए)
-//                val compressionArgs = "-vcodec libx264 -crf 28 -preset ultrafast"
-//
-//                when (selectedAction) {
-//                    "Cut Video" -> {
-//                        command = "-ss $startTime -i \"$inputPath\" -to $endTime -c copy \"$outputPath\""
-//                    }
-//                    "Mute Video" -> {
-//                        command = "-i \"$inputPath\" -an -vcodec copy \"$outputPath\""
-//                    }
-//                    "Extract Audio" -> {
-//                        command = "-i \"$inputPath\" -vn -acodec libmp3lame -q:a 2 \"$outputPath\""
-//                    }
-//                    "Remove Noise (Clean Voice)" -> {
-//                        command = "-i \"$inputPath\" -af \"afftdn\" $compressionArgs \"$outputPath\""
-//                    }
-//                    "Add BGM / Sound Effect" -> {
-//                        if (selectedAudioUri == null) {
-//                            withContext(Dispatchers.Main) {
-//                                Toast.makeText(context, "Please select BGM Audio first!", Toast.LENGTH_SHORT).show()
-//                                isLoading = false
-//                            }
-//                            return@launch
-//                        }
-//                        // BGM Mixing with Fade in/out & Volume control
-//                    }
-//                }
-//
-////                val session = FFmpegKit.execute(command)
-//                if (false) {
-//                    withContext(Dispatchers.Main) {
-//                        generatedFile = outFile
+                // -crf 28 File size को छोटा रखने के लिए है (Quality बरकरार रखते हुए)
+                val compressionArgs = "-vcodec libx264 -crf 28 -preset ultrafast"
+
+                when (selectedAction) {
+                    "Cut Video" -> {
+                        command = "-ss $startTime -i \"$inputPath\" -to $endTime -c copy \"$outputPath\""
+                    }
+                    "Mute Video" -> {
+                        command = "-i \"$inputPath\" -an -vcodec copy \"$outputPath\""
+                    }
+                    "Extract Audio" -> {
+                        command = "-i \"$inputPath\" -vn -acodec libmp3lame -q:a 2 \"$outputPath\""
+                    }
+                    "Remove Noise (Clean Voice)" -> {
+                        command = "-i \"$inputPath\" -af \"afftdn\" $compressionArgs \"$outputPath\""
+                    }
+                    "Add BGM / Sound Effect" -> {
+                        if (selectedAudioUri == null) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(context, "Please select BGM Audio first!", Toast.LENGTH_SHORT).show()
+                                isLoading = false
+                            }
+                            return@launch
+                        }
+                        val audioPath = FFmpegKitConfig.getSafParameterForRead(context, selectedAudioUri)
+                        // BGM Mixing with Fade in/out & Volume control
+                        command = "-i \"$inputPath\" -i \"$audioPath\" -filter_complex \"[0:a]volume=${videoVolume}[a1];[1:a]volume=${audioVolume},afade=t=in:st=0:d=2,afade=t=out:st=10:d=2[a2];[a1][a2]amix=inputs=2:duration=first:dropout_transition=2\" $compressionArgs \"$outputPath\""
+                    }
+                }
+
+                val session = FFmpegKit.execute(command)
+                if (session.returnCode.isValueSuccess) {
+                    withContext(Dispatchers.Main) {
+                        generatedFile = outFile
                         statusText = "Processing Completed Successfully!"
                         Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
                     }
