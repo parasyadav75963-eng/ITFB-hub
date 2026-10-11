@@ -60,7 +60,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
 
     // Google Generative AI
-    implementation 'com.google.ai.client.generativeai:generativeai:0.4.0'
+    implementation 'com.google.ai.client.generativeai:generativeai:0.7.0'
     
     // PDFBox
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
