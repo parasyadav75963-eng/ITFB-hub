@@ -198,23 +198,9 @@ fun ItfbAiScreen(onBack: () -> Unit) {
                                 
                                 coroutineScope.launch {
                                     try {
-                                        val generativeModel = GenerativeModel(
-                                            modelName = selectedModel,
-                                            apiKey = Secrets.GEMINI_API_KEY,
-                                            systemInstruction = content { text("You are ITFB AI, an intelligent and helpful assistant. Never mention that you are Gemini, Google, or an AI language model. Always introduce yourself as ITFB AI.") }
-                                        )
-                                        
-                                        val inputContent = content {
-                                            if (userImage != null) {
-                                                val inputStream = context.contentResolver.openInputStream(userImage)
-                                                val bitmap = BitmapFactory.decodeStream(inputStream)
-                                                if (bitmap != null) image(bitmap)
-                                            }
-                                            if (userText.isNotBlank()) text(userText)
-                                        }
-                                        
-                                        val response = generativeModel.generateContent(inputContent)
-                                        chatHistory = chatHistory + ChatMessage(isUser = false, text = response.text ?: "No response generated.")
+                                        val promptText = if (userText.isNotBlank()) userText else "Hello"
+                                        val responseText = GeminiRestClient.generateContent(promptText)
+                                        chatHistory = chatHistory + ChatMessage(isUser = false, text = responseText)
                                     } catch (e: Exception) {
                                         chatHistory = chatHistory + ChatMessage(isUser = false, text = "Error: Could not connect to server.")
                                     } finally {
