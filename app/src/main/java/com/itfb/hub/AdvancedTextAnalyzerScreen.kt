@@ -70,9 +70,9 @@ fun AdvancedTextAnalyzerScreen(onBack: () -> Unit) {
                 } catch (t: Throwable) {
                     android.widget.Toast.makeText(context, "AI Error: ${t.message}", android.widget.Toast.LENGTH_SHORT).show()
                     statusText = "AI Analysis Failed."
+                } finally {
+                    isLoading = false
                 }
-                isLoading = false
-            }
         }
     }
 
