@@ -73,7 +73,7 @@ fun ItfbVaultScreen(onBack: () -> Unit) {
                 val prompt = "You are ITFB Vault Assistant. The user is asking a question about their saved links and passwords. Answer based ONLY on the data provided below.\n\nData:\n$allData\n\nQuestion: $aiQuery"
                 
                 val model = GenerativeModel(
-                    modelName = "gemini-1.5-flash",
+                    modelName = "gemini-3.8-flash",
                     apiKey = Secrets.GEMINI_API_KEY,
                     systemInstruction = content { text("You are a secure vault assistant.") }
                 )

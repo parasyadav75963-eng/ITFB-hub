@@ -156,7 +156,7 @@ fun TextToPdfGeneratorScreen(onBack: () -> Unit) {
                         isAiThinking = true
                         coroutineScope.launch {
                             try {
-                                val model = GenerativeModel("gemini-1.5-flash", Secrets.GEMINI_API_KEY, systemInstruction = content { text("You are ITFB AI. Answer the question based ONLY on the provided text.") })
+                                val model = GenerativeModel("gemini-3.8-flash", Secrets.GEMINI_API_KEY, systemInstruction = content { text("You are ITFB AI. Answer the question based ONLY on the provided text.") })
                                 val prompt = "Text: '$pdfContent'\n\nQuestion: $aiUserQuestion"
                                 val response = model.generateContent(prompt)
                                 aiChatResponse = response.text ?: "No response."
@@ -223,7 +223,7 @@ fun TextToPdfGeneratorScreen(onBack: () -> Unit) {
                             loadingStatus = "Enhancing text with ITFB AI..."
                             coroutineScope.launch {
                                 try {
-                                    val model = GenerativeModel("gemini-1.5-flash", Secrets.GEMINI_API_KEY, systemInstruction = content { text("You are ITFB AI. Fix any grammar, spelling, or structural errors in the provided text and make it professional. Output ONLY the corrected text.") })
+                                    val model = GenerativeModel("gemini-3.8-flash", Secrets.GEMINI_API_KEY, systemInstruction = content { text("You are ITFB AI. Fix any grammar, spelling, or structural errors in the provided text and make it professional. Output ONLY the corrected text.") })
                                     val response = model.generateContent(pdfContent)
                                     pdfContent = response.text?.trim() ?: pdfContent
                                     Toast.makeText(context, "Text Enhanced!", Toast.LENGTH_SHORT).show()
