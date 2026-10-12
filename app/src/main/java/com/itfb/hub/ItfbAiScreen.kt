@@ -225,14 +225,14 @@ fun ItfbAiScreen(onBack: () -> Unit) {
 
 @Composable
 fun MessageBubble(message: ChatMessage, context: Context) {
-    val alignment = if (message.isUser) Alignment.CenterEnd else Alignment.CenterStart
+    val alignment = if (message.isUser) Alignment.End else Alignment.Start
     val bgColor = if (message.isUser) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
-        horizontalAlignment = alignment as Alignment.Horizontal
+        horizontalAlignment = alignment
     ) {
         Box(
             modifier = Modifier

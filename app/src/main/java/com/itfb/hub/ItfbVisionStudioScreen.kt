@@ -138,21 +138,17 @@ fun ItfbVisionStudioScreen(onBack: () -> Unit) {
         statusText = "ITFB AI is analyzing the image..."
         
         coroutineScope.launch {
-            try {
-                val model = GenerativeModel("gemini-3.6-flash", Secrets.GEMINI_API_KEY)
-                val response = model.generateContent(content {
-                    image(selectedBitmap!!)
-                    text("Describe this image in detail. Tell me what objects are visible, what the background is like, and read any text if present. Make the description very helpful and accessible for a visually impaired user.")
-                })
-                
-                resultText = "ITFB AI Description:\n" + (response.text ?: "Could not describe.")
-                statusText = "AI Description Ready!"
-                tts?.speak(response.text ?: "", TextToSpeech.QUEUE_FLUSH, null, null)
-            } catch (e: Exception) {
-                statusText = "AI Error. Check internet connection."
-            } finally {
-                isLoading = false
-            }
+                try {
+                    val prompt = "Describe this image in detail. Tell me what objects are visible, what the background is like, and read any text if present. Make the description very helpful and accessible for a visually impaired user."
+                    val responseText = GeminiRestClient.generateContent(prompt, selectedBitmap)
+                    resultText = "ITFB AI Description:\n$responseText"
+                    statusText = "AI Description Ready!"
+                    tts?.speak(responseText, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null)
+                } catch (t: Throwable) {
+                    statusText = "AI Error: ${t.message}"
+                } finally {
+                    isLoading = false
+                }
         }
     }
 
