@@ -61,21 +61,16 @@ fun AdvancedTextAnalyzerScreen(onBack: () -> Unit) {
         statusText = "ITFB AI is analyzing text..."
 
         coroutineScope.launch {
-            try {
-                val prompt = "Analyze the following text. Provide: 1. Sentiment (Positive/Negative/Neutral), 2. Core Theme/Summary, 3. Tone, and 4. Key Takeaways. Make it structured and clear.\n\nText: $inputText"
-                val model = GenerativeModel(
-                    modelName = "gemini-3.6-flash",
-                    apiKey = Secrets.GEMINI_API_KEY,
-                    systemInstruction = content { text("You are ITFB Text Analysis Expert AI.") }
-                )
-                val response = model.generateContent(prompt)
-                analysisResult = response.text?.trim() ?: "Could not analyze."
-                statusText = "AI Analysis Completed!"
-                tts?.speak("AI Analysis completed. Ready to read.", TextToSpeech.QUEUE_FLUSH, null, null)
-            } catch (e: Exception) {
-                Toast.makeText(context, "AI Error: ${e.message}", Toast.LENGTH_SHORT).show()
-                statusText = "AI Analysis Failed."
-            } finally {
+                try {
+                    val prompt = "You are ITFB Text Analysis Expert AI. Analyze the following text. Provide: 1. Sentiment (Positive/Negative/Neutral), 2. Core Theme/Summary, 3. Tone, and 4. Key Takeaways. Make it structured and clear.\n\nText: $inputText"
+                    val responseText = GeminiRestClient.generateContent(prompt)
+                    analysisResult = responseText.trim()
+                    statusText = "AI Analysis Completed!"
+                    tts?.speak("AI Analysis completed. Ready to read.", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null)
+                } catch (t: Throwable) {
+                    android.widget.Toast.makeText(context, "AI Error: ${t.message}", android.widget.Toast.LENGTH_SHORT).show()
+                    statusText = "AI Analysis Failed."
+                }
                 isLoading = false
             }
         }

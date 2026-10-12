@@ -197,12 +197,17 @@ fun ItfbAiScreen(onBack: () -> Unit) {
                                 isLoading = true
                                 
                                 coroutineScope.launch {
-                                    try {
-                                        val promptText = if (userText.isNotBlank()) userText else "Hello"
-                                        val responseText = GeminiRestClient.generateContent(promptText)
-                                        chatHistory = chatHistory + ChatMessage(isUser = false, text = responseText)
-                                    } catch (e: Exception) {
-                                        chatHistory = chatHistory + ChatMessage(isUser = false, text = "Error: Could not connect to server.")
+                                        try {
+                                            var bitmap: android.graphics.Bitmap? = null
+                                            if (userImage != null) {
+                                                val inputStream = context.contentResolver.openInputStream(userImage)
+                                                bitmap = android.graphics.BitmapFactory.decodeStream(inputStream)
+                                            }
+                                            val promptText = if (userText.isNotBlank()) userText else "Describe this image"
+                                            val responseText = GeminiRestClient.generateContent(promptText, bitmap)
+                                            chatHistory = chatHistory + ChatMessage(isUser = false, text = responseText)
+                                        } catch (t: Throwable) {
+                                            chatHistory = chatHistory + ChatMessage(isUser = false, text = "UI Crash Prevented! Error: ${t.message}")
                                     } finally {
                                         isLoading = false
                                     }

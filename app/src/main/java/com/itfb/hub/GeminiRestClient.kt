@@ -1,13 +1,17 @@
 package com.itfb.hub
 
+import android.graphics.Bitmap
+import android.util.Base64
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
 import org.json.JSONObject
+import java.io.ByteArrayOutputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
 object GeminiRestClient {
-    suspend fun generateContent(prompt: String): String = withContext(Dispatchers.IO) {
+    suspend fun generateContent(prompt: String, image: Bitmap? = null): String = withContext(Dispatchers.IO) {
         try {
             val apiKey = Secrets.GEMINI_API_KEY
             val url = URL("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=$apiKey")
@@ -16,11 +20,24 @@ object GeminiRestClient {
             connection.setRequestProperty("Content-Type", "application/json")
             connection.doOutput = true
 
+            val partsArray = JSONArray()
+            partsArray.put(JSONObject().put("text", prompt.ifBlank { "Describe this image" }))
+
+            if (image != null) {
+                val outputStream = ByteArrayOutputStream()
+                image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
+                val base64String = Base64.encodeToString(outputStream.toByteArray(), Base64.NO_WRAP)
+                
+                val inlineData = JSONObject().apply {
+                    put("mimeType", "image/jpeg")
+                    put("data", base64String)
+                }
+                partsArray.put(JSONObject().put("inlineData", inlineData))
+            }
+
             val jsonBody = JSONObject().apply {
-                put("contents", org.json.JSONArray().put(
-                    JSONObject().put("parts", org.json.JSONArray().put(
-                        JSONObject().put("text", prompt)
-                    ))
+                put("contents", JSONArray().put(
+                    JSONObject().put("parts", partsArray)
                 ))
             }.toString()
 
@@ -36,8 +53,8 @@ object GeminiRestClient {
                 val errorMsg = connection.errorStream?.bufferedReader()?.readText() ?: "Unknown error"
                 return@withContext "API Error ${connection.responseCode}: $errorMsg"
             }
-        } catch (e: Exception) {
-            return@withContext "Crash Prevented! Error: ${e.localizedMessage}"
+        } catch (t: Throwable) {
+            return@withContext "Crash Prevented! Reason: ${t.localizedMessage}"
         }
     }
 }
