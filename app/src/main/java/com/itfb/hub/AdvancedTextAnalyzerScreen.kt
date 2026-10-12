@@ -64,7 +64,7 @@ fun AdvancedTextAnalyzerScreen(onBack: () -> Unit) {
             try {
                 val prompt = "Analyze the following text. Provide: 1. Sentiment (Positive/Negative/Neutral), 2. Core Theme/Summary, 3. Tone, and 4. Key Takeaways. Make it structured and clear.\n\nText: $inputText"
                 val model = GenerativeModel(
-                    modelName = "gemini-3.8-flash",
+                    modelName = "gemini-3.6-flash",
                     apiKey = Secrets.GEMINI_API_KEY,
                     systemInstruction = content { text("You are ITFB Text Analysis Expert AI.") }
                 )
