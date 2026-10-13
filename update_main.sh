@@ -1,0 +1,5 @@
+sed -i 's/var currentScreen by remember { mutableStateOf("home") }/val auth = com.google.firebase.auth.FirebaseAuth.getInstance()\n    var currentScreen by remember { mutableStateOf(if (auth.currentUser != null) "home" else "login") }/' app/src/main/java/com/itfb/hub/MainActivity.kt
+sed -i 's/var userName by remember { mutableStateOf<String?>.*null.*/var userName by remember { mutableStateOf(auth.currentUser?.displayName) }/' app/src/main/java/com/itfb/hub/MainActivity.kt
+sed -i 's/var userEmail by remember { mutableStateOf<String?>.*null.*/var userEmail by remember { mutableStateOf(auth.currentUser?.email) }/' app/src/main/java/com/itfb/hub/MainActivity.kt
+sed -i 's/BackHandler(enabled = currentScreen != "home") {/BackHandler(enabled = currentScreen != "home" \&\& currentScreen != "login") {/' app/src/main/java/com/itfb/hub/MainActivity.kt
+sed -i '/when (currentScreen) {/a \        "login" -> LoginScreen(onSignInSuccess = { name, email -> userName = name; userEmail = email; currentScreen = "home" })' app/src/main/java/com/itfb/hub/MainActivity.kt

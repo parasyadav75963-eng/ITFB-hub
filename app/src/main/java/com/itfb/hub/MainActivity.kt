@@ -43,15 +43,17 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AppNavigation() {
-    var currentScreen by remember { mutableStateOf("home") }
-    var userName by remember { mutableStateOf<String?>(null) }
-    var userEmail by remember { mutableStateOf<String?>(null) }
+    val auth = com.google.firebase.auth.FirebaseAuth.getInstance()
+    var currentScreen by remember { mutableStateOf(if (auth.currentUser != null) "home" else "login") }
+    var userName by remember { mutableStateOf(auth.currentUser?.displayName) }
+    var userEmail by remember { mutableStateOf(auth.currentUser?.email) }
 
-    BackHandler(enabled = currentScreen != "home") {
+    BackHandler(enabled = currentScreen != "home" && currentScreen != "login") {
         currentScreen = "home"
     }
 
     when (currentScreen) {
+        "login" -> LoginScreen(onSignInSuccess = { name, email -> userName = name; userEmail = email; currentScreen = "home" })
         "home" -> ItfbHubApp(
             userName = userName,
             onNavigate = { screen -> currentScreen = screen },
