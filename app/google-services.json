@@ -12,7 +12,12 @@
           "package_name": "com.itfb.hub"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "630021231351-v3srrgfk9j4jlhpki7vj6b3ni1inpkar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBAOo_pdYG9Xjc2OE2OQyIIglsULVRNcBc"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630021231351-v3srrgfk9j4jlhpki7vj6b3ni1inpkar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
