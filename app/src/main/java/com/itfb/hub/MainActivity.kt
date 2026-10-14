@@ -53,7 +53,7 @@ fun AppNavigation() {
     }
 
     when (currentScreen) {
-        "login" -> LoginScreen(onSignInSuccess = { name, email -> userName = name; userEmail = email; currentScreen = "home" })
+        "login" -> LoginScreen(onSignInSuccess = { userName = auth.currentUser?.displayName ?: ""; userEmail = auth.currentUser?.email ?: ""; currentScreen = "home" })
         "home" -> ItfbHubApp(
             userName = userName,
             onNavigate = { screen -> currentScreen = screen },
